@@ -10,7 +10,7 @@ interface Props {
   isMarried: boolean;
 }
 
-const TsPropTest = (props: Props) => {
+const TsPropTest1 = (props: Props) => {
   return (
     <div>
       <p>First Name: {props.name[0]}</p>
@@ -24,4 +24,4 @@ const TsPropTest = (props: Props) => {
   )
 };
 
-export default TsPropTest;
+export default TsPropTest1;
