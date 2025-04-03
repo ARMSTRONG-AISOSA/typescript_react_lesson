@@ -21,39 +21,12 @@ const Home = () => {
       hobbies: ["Video Games, ", "Jogging "],
       isMarried: false
     }
-  )
+  );
 
-  // Simulating a fetch function for an array of data
-  const fetchUserDataArray = () => (
-    [{
-      name: ["James", "Hobbs"],
-      age: 28,
-      gender: "Male",
-      profession: "Accontant",
-      hobbies: ["Video Games, ", "Jogging "],
-      isMarried: false
-    },
-    {
-      name: ["Samantha", "Higgins"],
-      age: 27,
-      gender: "Female",
-      profession: "Nurse",
-      hobbies: ["Music, ", "Card Games "],
-      isMarried: true
-    },
-    {
-      name: ["Bennadect", "Cruz"],
-      age: 22,
-      gender: "Female",
-      profession: "Bar",
-      hobbies: ["Swimming, ", "Sight seeing "],
-      isMarried: true
-    }]
-  )
-
+  
   const fetchedUser = fetchUserData();
 
-
+  
   const stringData: string = "Tony"
 
   return (
@@ -81,6 +54,7 @@ const Home = () => {
           hobbies={fetchedUser.hobbies}
           isMarried={fetchedUser.isMarried}
         />
+
       </div>
     </div>
   )
