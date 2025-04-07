@@ -20,3 +20,19 @@
     color: rgb(238, 241, 30);
     transition: all .3s;
 }
+
+@media (max-width: 550px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar a {
+        padding: 8px 16px;
+        border-radius: 24px;
+    }
+
+    .navbar a:hover {
+        color: black;
+        background-color: rgb(238, 241, 30);
+    }
+}

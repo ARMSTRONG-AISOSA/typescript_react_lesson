@@ -1,0 +1,27 @@
+Index: 1
+1.1: 
+This interface defines what the context value will look like when used with React’s Context API for managing users.
+
+1.2: 
+user: User[] | null
+This represents the state of users in the app.
+User[] → An array of user objects (each conforming to the User interface).
+| null → It could also be null (maybe initially, or if no user data is loaded yet).
+
+1.3: 
+addUser: (user: User) => void
+This is a function that accepts/add a single user object (of type User) and adds it to the list.
+=> void → Means the function does not return anything.
+
+1.4: 
+updateUser: (id: string) => void
+A function that takes an id (assuming you're associating users with unique string identifiers).
+Purpose: It will update a user’s details based on their ID.
+=> void: No return value expected.
+
+// Note: Right now this function only takes an ID. In real-world apps, it often also accepts new user data to apply during update, like updateUser: (id: string, updatedData: Partial<User>) => void.
+
+1.5: 
+deleteUser: (id: string) => void
+A function to remove a user from the user list.
+Takes an id (string), and removes the user with that id.

@@ -13,6 +13,20 @@ type Anime = {
     synopsis: string;
 };
 
+type User = {
+    name: string;
+    age: number;
+    isMarried: boolean;
+    country: Countries;
+};
+enum Countries {
+    Brazil = "Brazil",
+    France = "France",
+    India = "India",
+    Japan = "Japan",
+    UnitedStates = "United States",
+}
+
 const movieData: Movie[] = [
     { name: "Inception", date: "2010-07-16", boxOffice: 829895144, plotSummary: "A skilled thief enters the dreams of others to steal secrets." },
     { name: "The Dark Knight", date: "2008-07-18", boxOffice: 1004558444, plotSummary: "Batman battles the Joker in Gotham City." },
@@ -65,5 +79,20 @@ const animeData: Anime[] = [
     }
 ];
 
+const userData: User[] = [
+    {
+        name: "James Benhart",
+        age: 25,
+        isMarried: true,
+        country: Countries.UnitedStates, //TypeScript expects an enum reference, not just a string literal.
+    },
+    {
+        name: "Jane Loveth",
+        age: 28,
+        isMarried: false,
+        country: Countries.Japan,
+    }
+]
+
 // Export multiple datasets
-export { movieData, animeData };
+export { movieData, animeData, userData };

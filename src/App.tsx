@@ -5,6 +5,8 @@ import Home from './pages/home/Home';
 import PropTestPage from './pages/propTestPage/PropTestPage';
 import HooksTestPage from './pages/hooksTestPage/HooksTestPage';
 import Navbar from './components/navbar/Navbar';
+import ContextTestPage from './pages/contextTestPage/ContextTestPage';
+import EnumTestPage from './pages/enumTestPage/EnumTestPage';
 
 function App() {
 
@@ -23,6 +25,14 @@ function App() {
         <Route
           path='/typescript_react_lesson/hook_test_page'
           element={<HooksTestPage />}
+        />
+        <Route
+          path='/typescript_react_lesson/context_test_page'
+          element={<ContextTestPage />}
+        />
+        <Route
+          path='/typescript_react_lesson/enum_test_page'
+          element={<EnumTestPage />}
         />
         {/* Catch all route for 404 erros */}
         <Route path='*' element={<ErrorPage />} />
