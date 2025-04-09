@@ -1,5 +1,5 @@
 import './hooksTestPage.css';
-import HookTest1 from '../../components/hookTest/hookTest1';
+import HookTest1 from '../../components/hookTest/HookTest1';
 import HookTest2 from '../../components/hookTest/HookTest2';
 
 const HooksTestPage = () => {

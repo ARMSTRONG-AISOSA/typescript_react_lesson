@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContextProvider';
+// import { useContext } from 'react';
+// import { UserContext } from '../../context/UserContextProvider';
 import './contextTestPage.css';
 
 const ContextTestPage = () => {
 
-    const { users, addUser, deleteUser, updateUser } = useContext(UserContext);
+    // const { users, addUser, deleteUser, updateUser } = useContext(UserContext);
 
     return (
         <div>

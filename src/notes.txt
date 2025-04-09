@@ -14,14 +14,34 @@ This is a function that accepts/add a single user object (of type User) and adds
 => void → Means the function does not return anything.
 
 1.4: 
-updateUser: (id: string) => void
-A function that takes an id (assuming you're associating users with unique string identifiers).
+updateUser: (id: string, updatedFields: Partial<User>) => void
+A function that takes an id and an object that can contain some or all of the fields from the User type.
 Purpose: It will update a user’s details based on their ID.
-=> void: No return value expected.
+The keyword Partial<T> is a TypeScript utility type that transforms all properties of the given type T into optional properties.
 
-// Note: Right now this function only takes an ID. In real-world apps, it often also accepts new user data to apply during update, like updateUser: (id: string, updatedData: Partial<User>) => void.
+
 
 1.5: 
 deleteUser: (id: string) => void
 A function to remove a user from the user list.
 Takes an id (string), and removes the user with that id.
+
+
+//====================== What this "?" stands for
+{
+  id?: string;
+  name?: string;
+  age?: number;
+  isMarried?: boolean;
+  gender?: string;
+  profession?: string;
+  hobbies?: string[];
+}
+
+This is a type definition for an object where each property may or may not be present (because of the "?")
+
+
+//====================== "type" vs "interface" Keyword
+Both "type" and "interface" are used to define the shape of data.
+type: Limited to object-like structures	
+interface: Can represent functions, primitives, unions, tuples, etc.

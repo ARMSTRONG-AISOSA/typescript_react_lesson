@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 // You can use this for data in whatever component you use the context api
 export interface User {
+  id: string;
   name: string;
   age: number;
   isMarried: boolean;
@@ -15,7 +16,7 @@ export interface User {
 interface UserContextType {
   users: User[] | null; //Note-Index =>1.2
   addUser: (user: User) => void; //Note-Index =>1.3
-  updateUser: (id: string) => void; //Note-Index =>1.4
+  updateUser: (id: string, updatedFields: Partial<User>) => void; //Note-Index =>1.4
   deleteUser: (id: string) => void;
 }
 
@@ -46,6 +47,7 @@ export const UserContextProvider = (props: Props) => {
   useEffect(() => {
     setUsers([
       {
+        id: "1",
         name: "Luna",
         age: 27,
         isMarried: false,
@@ -56,20 +58,39 @@ export const UserContextProvider = (props: Props) => {
     ]);
   }, [])
 
-  // Functions
+  // Functionsreturn
   // add User Function
   const addUser = (user: User): void => {
-    return //returns nothing
+    setUsers(prev => prev ? [...prev, user] : [user]);
+
+    // prev ? [...prev, user]
+    // if users already has entries	Append the new user to the existing list
+    // : [user]
+    // users is null (no users yet)	Create a new array and add the first user
   };
 
   // update User Function
-  const updateUser = (id: string): void => {
-    return
+  const updateUser = (id: string, updatedFields: Partial<User>): void => {
+    setUsers(prev => prev?.map(user => user.id === id ? { ...user, ...updatedFields } : user) ?? null);
   };
 
   // delete User Function
   const deleteUser = (id: string): void => {
-    return
+    setUsers(prev => prev?.filter(user => user.id !== id) ?? null);
+
+    // prev => ...
+    // This is a callback function that takes the previous state (prev) and returns a new one to setUsers.
+
+    // .filter() returns a new array containing only the elements that return true for the condition inside it.
+
+    // user.id !== id:
+    // For each user, who do not match the id stay in the list so the one with the matching ID is removed.
+
+    // prev?:
+    // This is optional chaining, in case prev is null. It prevents JavaScript from throwing an error if prev is null.
+
+    // ?? null : This is the nullish coalescing operator.
+    // If prev was null to begin with, then prev?.filter(...) will evaluate to undefined. So, "?? null" ensures that if filtering results in undefined, we instead set the new state to null.
   };
 
   const contextValue = {
