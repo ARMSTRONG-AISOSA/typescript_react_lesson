@@ -5,3 +5,7 @@ body {
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.836);
 }
+
+.container {
+  padding: 0px 5%;
+}

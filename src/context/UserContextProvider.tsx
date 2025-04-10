@@ -70,6 +70,7 @@ export const UserContextProvider = (props: Props) => {
   };
 
   // update User Function
+  // This function updates the state-managed users array by finding a user with a specific ID and merging new field values into that user's data.
   const updateUser = (id: string, updatedFields: Partial<User>): void => {
     setUsers(prev => prev?.map(user => user.id === id ? { ...user, ...updatedFields } : user) ?? null);
   };
@@ -103,7 +104,9 @@ export const UserContextProvider = (props: Props) => {
 
   return <UserContext.Provider
     value={contextValue}
-  >{props.children}</UserContext.Provider>
+  >
+    {props.children}
+  </UserContext.Provider>
 }
 
 

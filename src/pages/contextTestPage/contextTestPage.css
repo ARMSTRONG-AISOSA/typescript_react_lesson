@@ -1,0 +1,55 @@
+.formFields {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.formFields label {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.formFields input {
+    margin-bottom: 10px;
+    padding: 4px 2px;
+    font-size: 1rem;
+}
+
+.formBtn {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formBtn button {
+    padding: 8px 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.904);
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.formBtn button:hover {
+    color: rgba(0, 0, 0, 0.904);
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.904);
+    transition: all 0.3s;
+}
+
+.userData {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.15s;
+}
+
+.userData:hover {
+    transition: all 0.1s;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
