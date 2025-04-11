@@ -142,3 +142,69 @@ The ?. is the optional chaining operator that prevents errors if users is undefi
 
 If users exists and has items, it uses the map() method to iterate through each user in the array
 
+
+//Note-Index =>2.4
+const [visibleForms, setVisibleForms] = useState({}); == "jsx" 
+const [visibleForms, setVisibleForms] = useState<{ [key: string]: boolean }>({}); == "tsx" 
+--object-based state, each user gets their own toggle for showing/hiding their edit form.
+
+
+You're using React's useState to create a state variable called visibleForms. This state tracks which user edit forms are visible — individually per user.
+
+visibleForms: This is the state object that stores key-value pairs like:
+{
+  "user1-id": true,   // show edit form for user with id "user1-id"
+  "user2-id": false,  // hide edit form for user with id "user2-id"
+  ...
+}
+
+setVisibleForms: This is the function used to update that state.
+This way, you’ll store visibility per user ID.
+
+useState<{ [key: string]: boolean }>(...):
+This tells TypeScript that the state is an object where:
+Each key is a string (user ID).
+Each value is a boolean (true = show the form, false = hide it).
+
+{}: This is the initial value of the state — an empty object, meaning no forms are visible initially.
+
+Instead of having one global isVisible (which would toggle all forms), this pattern lets you track visibility for each user separately, by their unique ID. So when a user clicks "Show Edit Info", only their form toggles — not everyone’s.
+
+
+//Note-Index =>2.5
+"...prev, [userId]: !prev[userId],"
+This is a common pattern in React for updating object state immutably, especially when using useState.
+
+#Code
+setVisibleForms(prev => ({
+  ...prev,
+  [userId]: !prev[userId]
+}));
+ 
+...prev
+This spreads (copies) all the previous properties of the prev [stored] object (which in this case is [in] visibleForms).
+
+So if prev looked like { "1": true, "2": false }, spreading it would give you:
+#Code
+{
+  "1": true,
+  "2": false
+}
+
+[userId]:
+This is computed property syntax in JavaScript.
+
+Whatever the value of userId is, it becomes the key in the new object.
+So if userId === "2", the line becomes:
+#Code
+"2": !prev["2"]
+!prev[userId]
+This toggles the current boolean value of visibleForms[userId]. If visibleForms["2"] === false, it becomes true and vice versa.
+
+#Code
+setVisibleForms(prev => ({
+  ...prev,
+  [userId]: !prev[userId]
+}));
+Means:
+“Copy all the existing visibility states, and toggle the one for this user (userId).” So each user gets their own independent show/hide toggle logic.

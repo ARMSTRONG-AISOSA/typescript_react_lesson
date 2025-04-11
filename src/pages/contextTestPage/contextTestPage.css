@@ -53,3 +53,35 @@
     transition: all 0.1s;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+.updateForm {
+    display: none;
+}
+
+.updateForm.active {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.gen-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: rgba(128, 128, 128, 0.13);
+    color: black;
+    border: 1px solid black;
+    transition: all 0.15s;
+}
+
+.gen-btn:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.904);
+    transition: all 0.3s;
+}
+
+.userForm-Btns {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}

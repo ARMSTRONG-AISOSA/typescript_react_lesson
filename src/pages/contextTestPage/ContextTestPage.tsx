@@ -1,7 +1,7 @@
 import './contextTestPage.css';
 import React, { useContext, useState } from 'react';
 import { User, UserContext } from '../../context/UserContextProvider';
-import { v4 as uuidv4 } from 'uuid'; //Note-Index =>2.1
+import { v4 as uuidv4 } from 'uuid'; //Note-Index => 2.1
 
 const ContextTestPage = () => {
 
@@ -17,20 +17,27 @@ const ContextTestPage = () => {
         hobbies: ""
     });
 
+    // const [visibleForms, setVisibleForms] = useState({}); == "jsx" 
+    // object-based state, each user gets their own toggle for showing/hiding their edit form.
+    // For More understanding check Index =>2.4
+    const [visibleForms, setVisibleForms] = useState<{ [key: string]: boolean }>({});
+
     //Note-Index =>2.2
     // Handle input changes
-    // This function handles input field changes in a form 
+    // This function handles input field changes in a form
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 
-        // extract key data(name, value, type, and checked) from e.
-        const { name, value, type, checked } = e.target;
+        // extract key data(name, value, and type) from e.
+        const target = e.target;
+        const { name, value, type } = target;
 
 
         // Updating the state object newUser using setNewUser.
         setNewUser((prev) => ({
 
-            // For understanding chexk Index =>2.2
-            ...prev, [name]: type === "checkbox" ? checked : value,
+            // For understanding check Index =>2.3
+            ...prev,
+            [name]: type === "checkbox" ? (target as HTMLInputElement).checked : value,
         }));
 
     };
@@ -58,6 +65,16 @@ const ContextTestPage = () => {
             isMarried: false,
             hobbies: ""
         });
+    };
+
+    // Toggle User Data Update Visibility 
+    // For more understanding ==> Index =>2.5
+    const toggleVisibility = (userId: string) => {
+        setVisibleForms((prev) => ({
+            // Copy all the existing visibility states, and toggle the one for this user (userId).
+            ...prev,
+            [userId]: !prev[userId], // Toggle for this specific user
+        }));
     }
 
     return (
@@ -106,10 +123,47 @@ const ContextTestPage = () => {
                                 <p><b>Marital Status:</b> {user.isMarried ? "Married" : "Single"}</p>
                                 <p><b>Hobbies:</b> {user.hobbies.join(", ")}</p>
 
-                                <div>
-                                    <button onClick={() => deleteUser(user.id)}>Remove</button>
+                                <div className='userForm-Btns'>
+                                    <button
+                                        className='gen-btn'
+                                        onClick={() => deleteUser(user.id)}>Remove</button>
 
-                                    <button onClick={() => updateUser(user.id, { profession: "Updated Developer", age: user.age + 1 })}>Update Info</button>
+                                    <button
+                                        className='gen-btn'
+                                        onClick={() => toggleVisibility(user.id)}
+                                    >
+                                        {visibleForms[user.id] ? 'hide' : 'Show'} Edit Info
+                                    </button>
+                                </div>
+
+                                {/* To be continued */}
+                                <div
+                                    className={`updateForm ${visibleForms[user.id] ? 'active' : ''}`}
+                                >
+
+                                    <label htmlFor="name">Name: </label>
+                                    <input type="text" placeholder='Enter Your Name' name='name' id='name' value={newUser.name} onChange={handleChange} />
+
+                                    <label htmlFor="age">Age: </label>
+                                    <input type="number" placeholder='Enter Your Age' name='age' id='age' value={newUser.age} onChange={handleChange} />
+
+                                    <label htmlFor="gender">Gender: </label>
+                                    <input type="text" placeholder='Enter Your Gender' name='gender' id='gender' value={newUser.gender} onChange={handleChange} />
+
+                                    <label htmlFor="profession">Profession: </label>
+                                    <input type="text" placeholder='Enter Your Profession' name='profession' id='profession' value={newUser.profession} onChange={handleChange} />
+
+                                    <label htmlFor="hobbies">Hobbies: </label>
+                                    <input type="text" placeholder='Hobbies (comma-separated)' name='hobbies' id='hobbies' value={newUser.hobbies} onChange={handleChange} />
+
+                                    <label htmlFor="isMarried">Are you married: <input type="checkbox" name='isMarried' id='isMarried' checked={newUser.isMarried} onChange={handleChange} /></label>
+
+                                    <div>
+                                        <button
+                                            className='gen-btn'
+                                            onClick={() => updateUser(user.id, { profession: "Updated Developer", age: user.age + 1 })}
+                                        >Update Info</button>
+                                    </div>
                                 </div>
 
                             </div>

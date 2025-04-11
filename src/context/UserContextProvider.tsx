@@ -101,7 +101,6 @@ export const UserContextProvider = (props: Props) => {
     deleteUser,
   }
 
-
   return <UserContext.Provider
     value={contextValue}
   >
